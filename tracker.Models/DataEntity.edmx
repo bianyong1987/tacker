@@ -1,0 +1,1312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tracker2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="affiliate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isdeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AffiliateParameter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parameter" Type="nvarchar" MaxLength="50" />
+          <Property Name="subparameter1" Type="nvarchar" MaxLength="50" />
+          <Property Name="subparameter2" Type="nvarchar" MaxLength="50" />
+          <Property Name="subparameter3" Type="nvarchar" MaxLength="50" />
+          <Property Name="tag" Type="nvarchar" MaxLength="200" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="AffiliateSource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="affiliateID" Type="int" />
+          <Property Name="sourceValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="offerID" Type="int" />
+          <Property Name="ts" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="tag" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AppEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clickid" Type="varchar" MaxLength="50" />
+          <Property Name="eventID" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="ts" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="appName">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="pkg_name" Type="varchar(max)" />
+          <Property Name="pkg_id" Type="varchar" MaxLength="50" />
+          <Property Name="sourceID" Type="int" />
+        </EntityType>
+        <EntityType Name="campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="redirect" Type="varchar" MaxLength="50" />
+          <Property Name="brush" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="isUaLimits" Type="int" />
+          <Property Name="tag" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="trafficSourceId" Type="int" Nullable="false" />
+          <Property Name="conversion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="domain" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="campaignPath" Type="varchar" MaxLength="50" />
+          <Property Name="userId" Type="int" />
+          <Property Name="checkRepeatIP" Type="bit" />
+          <Property Name="isImp" Type="bit" />
+          <Property Name="clickRepeatIP" Type="bit" />
+        </EntityType>
+        <EntityType Name="campaign_offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="campaignId" Type="int" Nullable="false" />
+          <Property Name="offerId" Type="int" Nullable="false" />
+          <Property Name="weight" Type="float" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampaignLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="campaignID" Type="int" />
+          <Property Name="clickCount" Type="int" />
+          <Property Name="impressionCount" Type="int" />
+          <Property Name="TS" Type="varchar" MaxLength="50" />
+          <Property Name="conversionCount" Type="int" />
+        </EntityType>
+        <EntityType Name="campaignPath">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="click">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="clickid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="campaignId" Type="int" Nullable="false" />
+          <Property Name="siteDomain" Type="varchar" MaxLength="50" />
+          <Property Name="ifa" Type="varchar" MaxLength="50" />
+          <Property Name="ip" Type="varchar" MaxLength="50" />
+          <Property Name="dspSsp" Type="varchar" MaxLength="50" />
+          <Property Name="isConvertsion" Type="int" Nullable="false" />
+          <Property Name="ts" Type="datetime" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="offerId" Type="int" Nullable="false" />
+          <Property Name="siteId" Type="varchar" MaxLength="50" />
+          <Property Name="appName" Type="varchar" MaxLength="50" />
+          <Property Name="tp" Type="int" />
+          <Property Name="remainID" Type="varchar" MaxLength="50" />
+          <Property Name="conversionTS" Type="varchar" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="source" Type="nvarchar" MaxLength="50" />
+          <Property Name="ua" Type="varchar(max)" />
+          <Property Name="lang" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="clickCount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="offerID" Type="int" />
+          <Property Name="clickSum" Type="int" />
+          <Property Name="TS" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="clickIdByname">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="domain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="varchar(max)" Nullable="false" />
+          <Property Name="email" Type="varchar(max)" Nullable="false" />
+          <Property Name="postbackUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="track" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ifa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ip">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ipDB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ip" Type="varchar(max)" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="languageDB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="language" Type="nvarchar(max)" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="loginHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="ts" Type="datetime" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LWCallback">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idfa" Type="varchar" MaxLength="50" />
+          <Property Name="TS" Type="datetime" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MediaBuy_Campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mblId" Type="int" />
+          <Property Name="campaignId" Type="int" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="weight" Type="int" />
+        </EntityType>
+        <EntityType Name="MediaBuyLink">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="launchLink" Type="varchar(max)" />
+          <Property Name="trafficName" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="linkcode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="url" Type="varchar(max)" Nullable="false" />
+          <Property Name="payout" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="affiliateid" Type="int" Nullable="false" />
+          <Property Name="max_visits_perday" Type="int" Nullable="false" />
+          <Property Name="interval_sec_between_visit" Type="int" Nullable="false" />
+          <Property Name="tag" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="source" Type="varchar" MaxLength="50" />
+          <Property Name="scope" Type="varchar(max)" />
+          <Property Name="businessID" Type="int" />
+          <Property Name="impUrl" Type="varchar(max)" />
+          <Property Name="sourcesId" Type="int" />
+        </EntityType>
+        <EntityType Name="offerDayStatistics">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="offerId" Type="int" Nullable="false" />
+          <Property Name="clicks" Type="int" Nullable="false" />
+          <Property Name="conversions" Type="int" Nullable="false" />
+          <Property Name="sDate" Type="date" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="offerReportList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="offerId" Type="int" />
+          <Property Name="name" Type="varchar(max)" />
+          <Property Name="clicks" Type="int" />
+          <Property Name="conversions" Type="int" />
+          <Property Name="revenue" Type="float" />
+          <Property Name="userID" Type="int" />
+          <Property Name="businessID" Type="int" />
+          <Property Name="recordDate" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="offerSource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sourceVal" Type="varchar(max)" />
+          <Property Name="itemVal" Type="varchar(max)" />
+          <Property Name="offerID" Type="int" />
+          <Property Name="isDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="postbackPath">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siteDomain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="sourceID" Type="int" />
+        </EntityType>
+        <EntityType Name="siteId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="countryId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="sourceID" Type="int" />
+        </EntityType>
+        <EntityType Name="source">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="val" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="int" />
+          <Property Name="userID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="source" Type="varchar" MaxLength="50" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="tag" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SourcesItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item" Type="varchar" MaxLength="50" />
+          <Property Name="sourceID" Type="int" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="trafficSource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="param" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uaDB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ua" Type="nvarchar(max)" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ticket" Type="varchar(max)" />
+          <Property Name="stime" Type="datetime" />
+          <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isDeleted" Type="int" Nullable="false" />
+          <Property Name="workGroup" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="tracker2ModelStoreContainer">
+          <EntitySet Name="affiliate" EntityType="Self.affiliate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AffiliateParameter" EntityType="Self.AffiliateParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AffiliateSource" EntityType="Self.AffiliateSource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppEvent" EntityType="Self.AppEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appName" EntityType="Self.appName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="campaign" EntityType="Self.campaign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="campaign_offer" EntityType="Self.campaign_offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CampaignLog" EntityType="Self.CampaignLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="campaignPath" EntityType="Self.campaignPath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="click" EntityType="Self.click" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clickCount" EntityType="Self.clickCount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clickIdByname" EntityType="Self.clickIdByname" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="domain" EntityType="Self.domain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ifa" EntityType="Self.ifa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ip" EntityType="Self.ip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ipDB" EntityType="Self.ipDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="languageDB" EntityType="Self.languageDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loginHistory" EntityType="Self.loginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LWCallback" EntityType="Self.LWCallback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MediaBuy_Campaign" EntityType="Self.MediaBuy_Campaign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MediaBuyLink" EntityType="Self.MediaBuyLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offer" EntityType="Self.offer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offerDayStatistics" EntityType="Self.offerDayStatistics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offerReportList" EntityType="Self.offerReportList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offerSource" EntityType="Self.offerSource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="postbackPath" EntityType="Self.postbackPath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siteDomain" EntityType="Self.siteDomain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siteId" EntityType="Self.siteId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="source" EntityType="Self.source" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sources" EntityType="Self.Sources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SourcesItem" EntityType="Self.SourcesItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trafficSource" EntityType="Self.trafficSource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uaDB" EntityType="Self.uaDB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tracker2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="affiliate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isdeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AffiliateParameter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parameter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="subparameter1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="subparameter2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="subparameter3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tag" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="AffiliateSource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="affiliateID" Type="Int32" />
+          <Property Name="sourceValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="offerID" Type="Int32" />
+          <Property Name="ts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AppEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clickid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="eventID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="ts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="appName">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="pkg_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pkg_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sourceID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="redirect" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="brush" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isUaLimits" Type="Int32" />
+          <Property Name="tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="trafficSourceId" Type="Int32" Nullable="false" />
+          <Property Name="conversion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="domain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="campaignPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="checkRepeatIP" Type="Boolean" />
+          <Property Name="isImp" Type="Boolean" />
+          <Property Name="clickRepeatIP" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="campaign_offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="campaignId" Type="Int32" Nullable="false" />
+          <Property Name="offerId" Type="Int32" Nullable="false" />
+          <Property Name="weight" Type="Double" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CampaignLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="campaignID" Type="Int32" />
+          <Property Name="clickCount" Type="Int32" />
+          <Property Name="impressionCount" Type="Int32" />
+          <Property Name="TS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conversionCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="campaignPath">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="click">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="clickid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="campaignId" Type="Int32" Nullable="false" />
+          <Property Name="siteDomain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ifa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dspSsp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isConvertsion" Type="Int32" Nullable="false" />
+          <Property Name="ts" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="offerId" Type="Int32" Nullable="false" />
+          <Property Name="siteId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="appName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tp" Type="Int32" />
+          <Property Name="remainID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conversionTS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ua" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lang" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="clickCount">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="offerID" Type="Int32" />
+          <Property Name="clickSum" Type="Int32" />
+          <Property Name="TS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="clickIdByname">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="domain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postbackUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="track" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ifa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ip">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ipDB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="languageDB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="loginHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="ts" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LWCallback">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idfa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TS" Type="DateTime" Precision="3" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MediaBuy_Campaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mblId" Type="Int32" />
+          <Property Name="campaignId" Type="Int32" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="weight" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MediaBuyLink">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="launchLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="trafficName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="linkcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="payout" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="affiliateid" Type="Int32" Nullable="false" />
+          <Property Name="max_visits_perday" Type="Int32" Nullable="false" />
+          <Property Name="interval_sec_between_visit" Type="Int32" Nullable="false" />
+          <Property Name="tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="scope" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="businessID" Type="Int32" />
+          <Property Name="impUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sourcesId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="offerDayStatistics">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="offerId" Type="Int32" Nullable="false" />
+          <Property Name="clicks" Type="Int32" Nullable="false" />
+          <Property Name="conversions" Type="Int32" Nullable="false" />
+          <Property Name="sDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="offerReportList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="offerId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="clicks" Type="Int32" />
+          <Property Name="conversions" Type="Int32" />
+          <Property Name="revenue" Type="Double" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="businessID" Type="Int32" />
+          <Property Name="recordDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="offerSource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sourceVal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="itemVal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="offerID" Type="Int32" />
+          <Property Name="isDeleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="postbackPath">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siteDomain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="sourceID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="siteId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="countryId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="sourceID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="source">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="val" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Int32" />
+          <Property Name="userID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SourcesItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sourceID" Type="Int32" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="trafficSource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="param" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uaDB">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ua" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticket" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="stime" Type="DateTime" Precision="3" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isDeleted" Type="Int32" Nullable="false" />
+          <Property Name="workGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="tracker2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="affiliate" EntityType="Self.affiliate" />
+          <EntitySet Name="AffiliateParameter" EntityType="Self.AffiliateParameter" />
+          <EntitySet Name="AffiliateSource" EntityType="Self.AffiliateSource" />
+          <EntitySet Name="AppEvent" EntityType="Self.AppEvent" />
+          <EntitySet Name="appName" EntityType="Self.appName" />
+          <EntitySet Name="campaign" EntityType="Self.campaign" />
+          <EntitySet Name="campaign_offer" EntityType="Self.campaign_offer" />
+          <EntitySet Name="CampaignLog" EntityType="Self.CampaignLog" />
+          <EntitySet Name="campaignPath" EntityType="Self.campaignPath" />
+          <EntitySet Name="click" EntityType="Self.click" />
+          <EntitySet Name="clickCount" EntityType="Self.clickCount" />
+          <EntitySet Name="clickIdByname" EntityType="Self.clickIdByname" />
+          <EntitySet Name="country" EntityType="Self.country" />
+          <EntitySet Name="domain" EntityType="Self.domain" />
+          <EntitySet Name="ifa" EntityType="Self.ifa" />
+          <EntitySet Name="ip" EntityType="Self.ip" />
+          <EntitySet Name="ipDB" EntityType="Self.ipDB" />
+          <EntitySet Name="languageDB" EntityType="Self.languageDB" />
+          <EntitySet Name="loginHistory" EntityType="Self.loginHistory" />
+          <EntitySet Name="LWCallback" EntityType="Self.LWCallback" />
+          <EntitySet Name="MediaBuy_Campaign" EntityType="Self.MediaBuy_Campaign" />
+          <EntitySet Name="MediaBuyLink" EntityType="Self.MediaBuyLink" />
+          <EntitySet Name="offer" EntityType="Self.offer" />
+          <EntitySet Name="offerDayStatistics" EntityType="Self.offerDayStatistics" />
+          <EntitySet Name="offerReportList" EntityType="Self.offerReportList" />
+          <EntitySet Name="offerSource" EntityType="Self.offerSource" />
+          <EntitySet Name="postbackPath" EntityType="Self.postbackPath" />
+          <EntitySet Name="siteDomain" EntityType="Self.siteDomain" />
+          <EntitySet Name="siteId" EntityType="Self.siteId" />
+          <EntitySet Name="source" EntityType="Self.source" />
+          <EntitySet Name="Sources" EntityType="Self.Sources" />
+          <EntitySet Name="SourcesItem" EntityType="Self.SourcesItem" />
+          <EntitySet Name="trafficSource" EntityType="Self.trafficSource" />
+          <EntitySet Name="uaDB" EntityType="Self.uaDB" />
+          <EntitySet Name="user" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tracker2ModelStoreContainer" CdmEntityContainer="tracker2Entities">
+          <EntitySetMapping Name="affiliate">
+            <EntityTypeMapping TypeName="tracker2Model.affiliate">
+              <MappingFragment StoreEntitySet="affiliate">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AffiliateParameter">
+            <EntityTypeMapping TypeName="tracker2Model.AffiliateParameter">
+              <MappingFragment StoreEntitySet="AffiliateParameter">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parameter" ColumnName="parameter" />
+                <ScalarProperty Name="subparameter1" ColumnName="subparameter1" />
+                <ScalarProperty Name="subparameter2" ColumnName="subparameter2" />
+                <ScalarProperty Name="subparameter3" ColumnName="subparameter3" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AffiliateSource">
+            <EntityTypeMapping TypeName="tracker2Model.AffiliateSource">
+              <MappingFragment StoreEntitySet="AffiliateSource">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="affiliateID" ColumnName="affiliateID" />
+                <ScalarProperty Name="sourceValue" ColumnName="sourceValue" />
+                <ScalarProperty Name="offerID" ColumnName="offerID" />
+                <ScalarProperty Name="ts" ColumnName="ts" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppEvent">
+            <EntityTypeMapping TypeName="tracker2Model.AppEvent">
+              <MappingFragment StoreEntitySet="AppEvent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clickid" ColumnName="clickid" />
+                <ScalarProperty Name="eventID" ColumnName="eventID" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="ts" ColumnName="ts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appName">
+            <EntityTypeMapping TypeName="tracker2Model.appName">
+              <MappingFragment StoreEntitySet="appName">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="pkg_name" ColumnName="pkg_name" />
+                <ScalarProperty Name="pkg_id" ColumnName="pkg_id" />
+                <ScalarProperty Name="sourceID" ColumnName="sourceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="campaign">
+            <EntityTypeMapping TypeName="tracker2Model.campaign">
+              <MappingFragment StoreEntitySet="campaign">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="redirect" ColumnName="redirect" />
+                <ScalarProperty Name="brush" ColumnName="brush" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="isUaLimits" ColumnName="isUaLimits" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="trafficSourceId" ColumnName="trafficSourceId" />
+                <ScalarProperty Name="conversion" ColumnName="conversion" />
+                <ScalarProperty Name="domain" ColumnName="domain" />
+                <ScalarProperty Name="campaignPath" ColumnName="campaignPath" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="checkRepeatIP" ColumnName="checkRepeatIP" />
+                <ScalarProperty Name="isImp" ColumnName="isImp" />
+                <ScalarProperty Name="clickRepeatIP" ColumnName="clickRepeatIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="campaign_offer">
+            <EntityTypeMapping TypeName="tracker2Model.campaign_offer">
+              <MappingFragment StoreEntitySet="campaign_offer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="campaignId" ColumnName="campaignId" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampaignLog">
+            <EntityTypeMapping TypeName="tracker2Model.CampaignLog">
+              <MappingFragment StoreEntitySet="CampaignLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="campaignID" ColumnName="campaignID" />
+                <ScalarProperty Name="clickCount" ColumnName="clickCount" />
+                <ScalarProperty Name="impressionCount" ColumnName="impressionCount" />
+                <ScalarProperty Name="TS" ColumnName="TS" />
+                <ScalarProperty Name="conversionCount" ColumnName="conversionCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="campaignPath">
+            <EntityTypeMapping TypeName="tracker2Model.campaignPath">
+              <MappingFragment StoreEntitySet="campaignPath">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="click">
+            <EntityTypeMapping TypeName="tracker2Model.click">
+              <MappingFragment StoreEntitySet="click">
+                <ScalarProperty Name="clickid" ColumnName="clickid" />
+                <ScalarProperty Name="campaignId" ColumnName="campaignId" />
+                <ScalarProperty Name="siteDomain" ColumnName="siteDomain" />
+                <ScalarProperty Name="ifa" ColumnName="ifa" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="dspSsp" ColumnName="dspSsp" />
+                <ScalarProperty Name="isConvertsion" ColumnName="isConvertsion" />
+                <ScalarProperty Name="ts" ColumnName="ts" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="siteId" ColumnName="siteId" />
+                <ScalarProperty Name="appName" ColumnName="appName" />
+                <ScalarProperty Name="tp" ColumnName="tp" />
+                <ScalarProperty Name="remainID" ColumnName="remainID" />
+                <ScalarProperty Name="conversionTS" ColumnName="conversionTS" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="ua" ColumnName="ua" />
+                <ScalarProperty Name="lang" ColumnName="lang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clickCount">
+            <EntityTypeMapping TypeName="tracker2Model.clickCount">
+              <MappingFragment StoreEntitySet="clickCount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="offerID" ColumnName="offerID" />
+                <ScalarProperty Name="clickSum" ColumnName="clickSum" />
+                <ScalarProperty Name="TS" ColumnName="TS" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clickIdByname">
+            <EntityTypeMapping TypeName="tracker2Model.clickIdByname">
+              <MappingFragment StoreEntitySet="clickIdByname">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="country">
+            <EntityTypeMapping TypeName="tracker2Model.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="domain">
+            <EntityTypeMapping TypeName="tracker2Model.domain">
+              <MappingFragment StoreEntitySet="domain">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="postbackUrl" ColumnName="postbackUrl" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="track" ColumnName="track" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ifa">
+            <EntityTypeMapping TypeName="tracker2Model.ifa">
+              <MappingFragment StoreEntitySet="ifa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ip">
+            <EntityTypeMapping TypeName="tracker2Model.ip">
+              <MappingFragment StoreEntitySet="ip">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ipDB">
+            <EntityTypeMapping TypeName="tracker2Model.ipDB">
+              <MappingFragment StoreEntitySet="ipDB">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="languageDB">
+            <EntityTypeMapping TypeName="tracker2Model.languageDB">
+              <MappingFragment StoreEntitySet="languageDB">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loginHistory">
+            <EntityTypeMapping TypeName="tracker2Model.loginHistory">
+              <MappingFragment StoreEntitySet="loginHistory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="ts" ColumnName="ts" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LWCallback">
+            <EntityTypeMapping TypeName="tracker2Model.LWCallback">
+              <MappingFragment StoreEntitySet="LWCallback">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idfa" ColumnName="idfa" />
+                <ScalarProperty Name="TS" ColumnName="TS" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MediaBuy_Campaign">
+            <EntityTypeMapping TypeName="tracker2Model.MediaBuy_Campaign">
+              <MappingFragment StoreEntitySet="MediaBuy_Campaign">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mblId" ColumnName="mblId" />
+                <ScalarProperty Name="campaignId" ColumnName="campaignId" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MediaBuyLink">
+            <EntityTypeMapping TypeName="tracker2Model.MediaBuyLink">
+              <MappingFragment StoreEntitySet="MediaBuyLink">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="launchLink" ColumnName="launchLink" />
+                <ScalarProperty Name="trafficName" ColumnName="trafficName" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="linkcode" ColumnName="linkcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offer">
+            <EntityTypeMapping TypeName="tracker2Model.offer">
+              <MappingFragment StoreEntitySet="offer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="payout" ColumnName="payout" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="affiliateid" ColumnName="affiliateid" />
+                <ScalarProperty Name="max_visits_perday" ColumnName="max_visits_perday" />
+                <ScalarProperty Name="interval_sec_between_visit" ColumnName="interval_sec_between_visit" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="scope" ColumnName="scope" />
+                <ScalarProperty Name="businessID" ColumnName="businessID" />
+                <ScalarProperty Name="impUrl" ColumnName="impUrl" />
+                <ScalarProperty Name="sourcesId" ColumnName="sourcesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offerDayStatistics">
+            <EntityTypeMapping TypeName="tracker2Model.offerDayStatistics">
+              <MappingFragment StoreEntitySet="offerDayStatistics">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="clicks" ColumnName="clicks" />
+                <ScalarProperty Name="conversions" ColumnName="conversions" />
+                <ScalarProperty Name="sDate" ColumnName="sDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offerReportList">
+            <EntityTypeMapping TypeName="tracker2Model.offerReportList">
+              <MappingFragment StoreEntitySet="offerReportList">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="offerId" ColumnName="offerId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="clicks" ColumnName="clicks" />
+                <ScalarProperty Name="conversions" ColumnName="conversions" />
+                <ScalarProperty Name="revenue" ColumnName="revenue" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="businessID" ColumnName="businessID" />
+                <ScalarProperty Name="recordDate" ColumnName="recordDate" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offerSource">
+            <EntityTypeMapping TypeName="tracker2Model.offerSource">
+              <MappingFragment StoreEntitySet="offerSource">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sourceVal" ColumnName="sourceVal" />
+                <ScalarProperty Name="itemVal" ColumnName="itemVal" />
+                <ScalarProperty Name="offerID" ColumnName="offerID" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postbackPath">
+            <EntityTypeMapping TypeName="tracker2Model.postbackPath">
+              <MappingFragment StoreEntitySet="postbackPath">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siteDomain">
+            <EntityTypeMapping TypeName="tracker2Model.siteDomain">
+              <MappingFragment StoreEntitySet="siteDomain">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="sourceID" ColumnName="sourceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siteId">
+            <EntityTypeMapping TypeName="tracker2Model.siteId">
+              <MappingFragment StoreEntitySet="siteId">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="sourceID" ColumnName="sourceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="source">
+            <EntityTypeMapping TypeName="tracker2Model.source">
+              <MappingFragment StoreEntitySet="source">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="tracker2Model.Sources">
+              <MappingFragment StoreEntitySet="Sources">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SourcesItem">
+            <EntityTypeMapping TypeName="tracker2Model.SourcesItem">
+              <MappingFragment StoreEntitySet="SourcesItem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item" ColumnName="item" />
+                <ScalarProperty Name="sourceID" ColumnName="sourceID" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trafficSource">
+            <EntityTypeMapping TypeName="tracker2Model.trafficSource">
+              <MappingFragment StoreEntitySet="trafficSource">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="param" ColumnName="param" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uaDB">
+            <EntityTypeMapping TypeName="tracker2Model.uaDB">
+              <MappingFragment StoreEntitySet="uaDB">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ua" ColumnName="ua" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="tracker2Model.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="stime" ColumnName="stime" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="workGroup" ColumnName="workGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
